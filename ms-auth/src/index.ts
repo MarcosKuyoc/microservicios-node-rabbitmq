@@ -1,0 +1,1 @@
+console.log("Iniciando el proyecto con node y typescript");

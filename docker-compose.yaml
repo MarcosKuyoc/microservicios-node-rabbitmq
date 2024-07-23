@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  mongo-ms-auth:
+    image: mongo:3.6
+    container_name: mongo-ms-auth
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-auth-volume:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=12345
+    networks:
+      - net-ms
+
+volumes:
+  mongo-auth-volume:
+
+networks:
+  net-ms:
