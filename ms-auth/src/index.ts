@@ -1,10 +1,11 @@
 import { DatabaseBootstrap } from "./bootstrap/database.bootstrap";
 import { ServerBootstrap } from "./bootstrap/server.bootstrap";
+import app from "./app";
 
 (async() => {
     try {
         const services = [];
-        const serverBootstrap = new ServerBootstrap();
+        const serverBootstrap = new ServerBootstrap(app);
         const databaseBootstrap = new DatabaseBootstrap();
 
         services.push(serverBootstrap.initilize());
