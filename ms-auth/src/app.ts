@@ -8,7 +8,7 @@ class App {
         this.expressApp = express();
         this.middlewares();
         this.mountRoutes();
-        this.mountErros();
+        this.mountErrors();
     }
 
     private middlewares() {
@@ -22,7 +22,7 @@ class App {
         });
     }
 
-    private mountErros() {
+    private mountErrors() {
         this.expressApp.use(ErrorMiddleware.notFound);
         this.expressApp.use(ErrorMiddleware.generic);
     }
