@@ -1,4 +1,12 @@
 import express from 'express';
+import { ErrorMiddleware } from '../../../../middlewares/error.middleware';
+import { LoginController, NewAccessTokenController, RegisterController, ValidateAccessTokenController } from './controllers';
+
+const registerController = new RegisterController();
+const loginController = new LoginController();
+const validateAccessTokenController = new ValidateAccessTokenController();
+const newAccessTokenController = new NewAccessTokenController();
+
 class Router {
   readonly router: express.Router;
 
@@ -8,10 +16,10 @@ class Router {
   }
 
   private mountRouter() {
-    this.router.post('/register', ()=> { console.log('register')});
-    this.router.post('/login', ()=> { console.log('login')});
-    this.router.post('/validate-access-token', ()=> { console.log('validate access token')});
-    this.router.post('/new-access-token', ()=> { console.log('generar un nuevo token')});
+    this.router.post('/register', ErrorMiddleware.catchError(registerController.register));
+    this.router.post('/login', ErrorMiddleware.catchError(loginController.login));
+    this.router.post('/validate-access-token', ErrorMiddleware.catchError(validateAccessTokenController.validateAccessToken));
+    this.router.post('/new-access-token', ErrorMiddleware.catchError(newAccessTokenController.newAccessToken));
   }
 }
 
