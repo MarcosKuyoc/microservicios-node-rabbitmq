@@ -1,7 +1,7 @@
-# Microservicio para autenticacion
-Este micro servicio se encargara de la creacion de los tokes de autenticacion mediante usuario y contrasena
+# Microservicio para autenticación.
+Este microservicio se encargaría de la creación de los tokens de autenticación mediante usuario y contraseña.
 
-## Comandos basicos
+## Comandos básicos
 ```bash
 # para iniciar un proyecto en node (crear el package.json)
 > npm init -y 
@@ -16,9 +16,10 @@ Este micro servicio se encargara de la creacion de los tokes de autenticacion me
 ```
 
 # Versiones a usar
- - Version LTS de node 20.15.1
+ - Versión de desarrollo LTS de node 20.15.1
+ - Versión de producción LTS de node 
 
-# Librerias a usar
+# Librerías a usar
 - produccion
     - express
     - bcryptjs
@@ -42,14 +43,14 @@ Este micro servicio se encargara de la creacion de los tokes de autenticacion me
     - jest
     - ts-jest
 
-## instlaciones de paquetes
+## Instalaciones de paquetes
 ```bash
 > yarn add express bcryptjs cors cross-env joi mongoose uuid yenv amqplib jwt-simple
 # instalar typos para typescript
 > yarn add --dev @types/express @types/bcryptjs @types/cors @types/mongoose @types/uuid yenv @types/amqplib
 ```
 
-## instlaciones de paquetes de desarrollo
+## Instalaciones de paquetes de desarrollo
 ```bash
 > yarn add --dev gulp gulp-uglify-es rimraf ts-node typescript ts-node-dev eslint lint-staged jest ts-jest
 ```
