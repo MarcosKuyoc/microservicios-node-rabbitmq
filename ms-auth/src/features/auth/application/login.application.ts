@@ -1,6 +1,7 @@
 import { Auth } from "../domain/auth";
 import { AuthRepository } from "../domain/auth.repository";
 import { Tokens } from "../domain/tokens.interface";
+import { AuthService } from "./services/auth.service";
 
 export class LoginApplication {
   readonly repository: AuthRepository;
@@ -16,14 +17,14 @@ export class LoginApplication {
       return null;
     }
 
-    const isMatchPassword = true;
+    const isMatchPassword = await AuthService.isMatchPassword(password, auth.password);
 
     if (!isMatchPassword) {
       return null;
     }
 
-    const accessToken = "accessToken";
-    const refreshToken = "refreshToken";
+    const accessToken = AuthService.generateAccessToken(auth._id!, auth.name, auth.email);
+    const refreshToken = AuthService.generateRefreshToken();
 
     return { accessToken, refreshToken };
   }

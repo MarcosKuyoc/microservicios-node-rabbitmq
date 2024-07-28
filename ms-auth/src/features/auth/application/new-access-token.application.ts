@@ -1,6 +1,7 @@
 import { Auth } from "../domain/auth";
 import { AuthRepository } from "../domain/auth.repository";
 import { Tokens } from "../domain/tokens.interface";
+import { AuthService } from "./services/auth.service";
 
 export class NewAccessTokenApplication {
   readonly repository: AuthRepository;
@@ -16,8 +17,8 @@ export class NewAccessTokenApplication {
       return null;
     }
 
-    const accessToken = "accessToken";
-    const newRefreshToken = "refreshToken";
+    const accessToken = AuthService.generateAccessToken(auth._id!, auth.name, auth.email);
+    const newRefreshToken = AuthService.generateRefreshToken();
     await this.repository.update({refreshToken}, {refreshToken: newRefreshToken})
 
     return { accessToken, refreshToken: newRefreshToken };

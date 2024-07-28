@@ -1,13 +1,9 @@
 import { AuthRepository } from "../domain/auth.repository";
+import { AuthPayload } from "./services/auth-payload.interface";
+import { AuthService } from "./services/auth.service";
 
 export class ValidateAccessTokenApplication {
-  readonly repository: AuthRepository;
-
-  constructor(repository: AuthRepository) {
-    this.repository = repository;
-  }
-
-  async validateAccessToken(): Promise<string> {
-    return "payloadJWTDecode";
+  async validateAccessToken(accessToken: string): Promise<AuthPayload> {
+    return await AuthService.validateAccessToken(accessToken);
   }
 }
