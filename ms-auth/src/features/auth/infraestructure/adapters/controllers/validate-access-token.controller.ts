@@ -1,6 +1,4 @@
-import {Request, Response} from 'express';
-import { ValidateAccessTokenApplication } from '../../../application/validate-access-token.application';
-import { ErrorAuthPayload } from '../../../application/services/auth-payload.interface';
+import { Request, Response } from 'express';
 import { AuthService } from '../../../application/services/auth.service';
 
 export class ValidateAccessTokenController {
