@@ -37,10 +37,17 @@ export class EnvironmentVariables {
     static get QUEUE_ORDER_CREATED_EVENT(): string {
         return (
             process.env.QUEUE_ORDER_CREATED_EVENT ||
-            env.RABBITMQ.EXCHANGES.EXCHANGE_ORDER_COMPLETED_EVENT || 
-            "EXCHANGE_ORDER_COMPLETED_EVENT"
+            env.RABBITMQ.EXCHANGES.ORDER_CREATED_EVENT || 
+            "ORDER_CREATED_EVENT"
         );
     }
+
+    static get EXCHANGE_ORDER_COMPLETED_EVENT(): string {
+        return (
+          process.env.EXCHANGE_ORDER_COMPLETED_EVENT ||
+          env.RABBITMQ.EXCHANGES.EXCHANGE_ORDER_COMPLETED_EVENT
+        );
+      }
 
     static get EXCHANGE_ERROR_EVENT(): string {
         return (

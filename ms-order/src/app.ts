@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import { ErrorMiddleware } from './middlewares/error.middleware';
-import router from './features/order/infraestructure/adapters/router';
+import router from './features/order/infraestructure/adapters/http/router';
 
 class App {
     readonly expressApp: Application;

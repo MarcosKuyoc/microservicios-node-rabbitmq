@@ -1,12 +1,17 @@
-export type STATUS = "PENDING" | "COMPLETED" | "CANCELLED";
+export type STATUS_TYPE = "PENDING" | "COMPLETED" | "CANCELLED";
+export enum STATUS {
+  PENDING = "PENDING",
+  COMPLETED = "COMPLETED",
+  CANCELLED = "CANCELLED"
+}
 
-export default class Order {
+export class Order {
   readonly userId: string;
   readonly productId: string;
   readonly productName: string;
   readonly productCount: number;
   readonly transactionId: string;
-  readonly status: STATUS;
+  readonly status: STATUS_TYPE;
 
   constructor(
     userId: string,

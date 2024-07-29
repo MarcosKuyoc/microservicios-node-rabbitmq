@@ -1,0 +1,10 @@
+POST http://localhost:3100/order
+Content-Type: application/json
+
+{
+  "userId": "1",
+  "productId": "1",
+  "productName": "Tour #1 a cenote",
+  "productCount": 12,
+  "transactionId": "TC00000001"
+}

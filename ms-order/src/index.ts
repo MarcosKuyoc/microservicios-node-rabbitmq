@@ -2,6 +2,8 @@ import { DatabaseBootstrap } from "./bootstrap/database.bootstrap";
 import { ServerBootstrap } from "./bootstrap/server.bootstrap";
 import app from "./app";
 import { BrokerBootstrap } from './bootstrap/broker.bootstrap';
+import { BrokerListener } from "./services/broker.listener";
+
 
 (async() => {
     try {
@@ -9,11 +11,13 @@ import { BrokerBootstrap } from './bootstrap/broker.bootstrap';
         const serverBootstrap = new ServerBootstrap(app);
         const databaseBootstrap = new DatabaseBootstrap();
         const brokerBootstrap = new BrokerBootstrap();
+        const listener = new BrokerListener();
 
         services.push(serverBootstrap.initialize());
         services.push(databaseBootstrap.initialize());
         services.push(brokerBootstrap.initialize());
         await Promise.all(services);
+        await listener.listen();
     } catch (error) {
         console.error(error);
         process.exit(1);
