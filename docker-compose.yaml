@@ -13,6 +13,19 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=12345
     networks:
       - net-ms
+  
+  mongo-ms-order:
+    image: mongo:3.6
+    container_name: mongo-ms-order
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-order-volume:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=12345
+    networks:
+      - net-ms
 
   ms-auth:
     build:
@@ -38,8 +51,24 @@ services:
     networks:
       - net-ms
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq-container
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostic -q ping
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 2s
+    networks:
+      - net-ms
+
 volumes:
   mongo-auth-volume:
+  mongo-order-volume:
 
 networks:
   net-ms:
