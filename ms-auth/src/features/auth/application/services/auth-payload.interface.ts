@@ -5,3 +5,8 @@ export interface AuthPayload {
   iat?: number,
   exp?: number
 }
+
+export interface ErrorAuthPayload {
+  status: number;
+  message: string;
+}

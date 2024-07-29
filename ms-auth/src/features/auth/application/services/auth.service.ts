@@ -3,7 +3,7 @@ import { EnvironmentVariables } from '../../../../config/app.config';
 import { addMinute } from '@formkit/tempo';
 import jwt from 'jwt-simple';
 import bcrypt from "bcryptjs";
-import { AuthPayload } from './auth-payload.interface';
+import { AuthPayload, ErrorAuthPayload } from './auth-payload.interface';
 
 export class AuthService {
   static generateRefreshToken(): string {
@@ -35,14 +35,15 @@ export class AuthService {
     return await bcrypt.compare(password, hash);
   }
 
-  static async validateAccessToken(accessToken: string): Promise<AuthPayload> {
+  static async validateAccessToken(accessToken: string): Promise<AuthPayload | ErrorAuthPayload> {
     try {
-      return await jwt.decode(accessToken, EnvironmentVariables.TOKEN_SECRET_WORD);
+      const payload = await jwt.decode(accessToken, EnvironmentVariables.TOKEN_SECRET_WORD);
+      return payload;
     } catch (error: any) {
       if (error.message === 'Token expired') {
         throw {status: 409, message: 'the access token has expired'};
       } else {
-        throw {status: 409, message: 'the access token has expired'};
+        throw {status: 409, message: 'the access token is invalid'};
       }
     }
   }

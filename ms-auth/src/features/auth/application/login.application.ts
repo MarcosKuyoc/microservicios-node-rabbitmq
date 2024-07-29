@@ -24,7 +24,7 @@ export class LoginApplication {
     }
 
     const accessToken = AuthService.generateAccessToken(auth._id!, auth.name, auth.email);
-    const refreshToken = AuthService.generateRefreshToken();
+    const refreshToken = auth.refreshToken;
 
     return { accessToken, refreshToken };
   }

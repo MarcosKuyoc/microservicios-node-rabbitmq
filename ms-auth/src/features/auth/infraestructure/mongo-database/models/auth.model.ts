@@ -1,10 +1,11 @@
 import mongoose, { Schema, Model } from "mongoose";
+import { Auth } from "../../../domain/auth";
 
 class AuthModel {
-  private readonly authSchema: Schema;
+  private readonly authSchema: Schema<Auth>;
 
   constructor() {
-    this.authSchema = new Schema({
+    this.authSchema = new Schema<Auth>({
       name: {
         type: String,
         required: true,
@@ -29,8 +30,8 @@ class AuthModel {
     });
   }
   
-  get model(): Model<any> {
-    return mongoose.model('Auth', this.authSchema);
+  get model(): Model<Auth> {
+    return mongoose.model<Auth>('Auth', this.authSchema);
   }
 }
 
