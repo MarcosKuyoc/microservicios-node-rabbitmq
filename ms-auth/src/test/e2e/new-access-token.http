@@ -2,5 +2,5 @@ POST http://localhost:3000/auth/new-access-token
 Content-Type: application/json
 
 {
-  "refreshToken": "91898e68-41b6-474e-b153-11886ef949cd"
+  "refreshToken": "fa6f31eb-3fea-4e0a-bc0a-75e6fccf2fd2"
 }
