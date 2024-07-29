@@ -7,6 +7,6 @@
     "specVersion": 3
   },
   "routes": {
-    "routesDir": "./src/swagger"
+    "routesDir": "build"
   }
 }

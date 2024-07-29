@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf cache dist",
     "build": "npm run clean && tsc && gulp minify",
-    "swagger": "tsoa spec && tsoa routes",
+    "swagger": "tsoa spec",
     "test": "jest -c jest.json",
     "test:unit": "jest -c jest.unit.json",
     "dev": "npm run swagger && cross-env NODE_ENV=development ts-node-dev src/index.ts",

@@ -2,8 +2,6 @@ import express, { Application, Request, Response } from 'express';
 import { ErrorMiddleware } from './middlewares/error.middleware';
 import router from './features/auth/infraestructure/adapters/router';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from './swagger/swagger.json';
-
 
 class App {
     readonly expressApp: Application;
@@ -22,10 +20,8 @@ class App {
 
     private mountRoutes() {
         if (process.env.NODE_ENV === 'development') {
-            this.expressApp.use('/api-docs',
-                swaggerUi.serve,
-                swaggerUi.setup(swaggerDocument)
-            );
+            const swaggerDocument = require('./swagger/swagger.json');
+            this.expressApp.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
         }
         this.expressApp.use('/auth', router)
         this.expressApp.get("/", (req: Request, res: Response) => {
