@@ -54,3 +54,12 @@ Este microservicio se encargaría de la creación de los tokens de autenticació
 ```bash
 > yarn add --dev gulp gulp-uglify-es rimraf ts-node typescript ts-node-dev eslint lint-staged jest ts-jest
 ```
+
+## agregar Swagger
+```bash
+yarn add swagger-ui-express tsoa
+yarn add  @types/swagger-ui-express --dev
+```
+
+
+

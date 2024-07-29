@@ -1,0 +1,135 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Tokens": {
+				"properties": {
+					"accessToken": {
+						"type": "string"
+					},
+					"refreshToken": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"accessToken",
+					"refreshToken"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ErrorAuthPayload": {
+				"properties": {
+					"status": {
+						"type": "number",
+						"format": "double"
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"status",
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Pick_Auth.name-or-email-or-password_": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"email",
+					"password"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"RequestAuth": {
+				"$ref": "#/components/schemas/Pick_Auth.name-or-email-or-password_"
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "ms-auth",
+		"version": "1.0.0",
+		"description": "Microservicio encargado del proceso te autenticacion a la plataforma",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "LCC. Juan Marcos Kuyoc Escamilla"
+		}
+	},
+	"paths": {
+		"/register": {
+			"post": {
+				"operationId": "Register",
+				"responses": {
+					"201": {
+						"description": "User successfully registered",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Tokens"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid Paramaters",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorAuthPayload"
+								},
+								"examples": {
+									"Example 1": {}
+								}
+							}
+						}
+					}
+				},
+				"description": "Register a new user",
+				"tags": [
+					"Register"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "User registration details",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RequestAuth",
+								"description": "User registration details"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

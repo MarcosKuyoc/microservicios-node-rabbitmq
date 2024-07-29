@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { AuthInfraestructure } from '../mongo-database/auth.infraestructure';
 import { LoginController, NewAccessTokenController, RegisterController, ValidateAccessTokenController } from './controllers';
 import { LoginApplication, NewAccessTokenApplication, RegisterApplication } from '../../application';
@@ -25,7 +25,10 @@ class Router {
   private mountRouter() {
     this.router.post('/register',
       ValidatorMiddleware.validate(AuthSchema.REGISTER),
-      ErrorMiddleware.catchError(registerController.register)
+      ErrorMiddleware.catchError(async(req: Request, res: Response) => {
+        const result = await registerController.register(req.body);
+        res.status(201).json(result);
+      })
     );
     this.router.post('/login',
       ValidatorMiddleware.validate(AuthSchema.LOGIN),
