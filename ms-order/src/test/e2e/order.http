@@ -4,7 +4,7 @@ Content-Type: application/json
 {
   "userId": "1",
   "productId": "1",
-  "productName": "Tour #1 a cenote",
-  "productCount": 12,
-  "transactionId": "TC00000001"
+  "productName": "Tour #2 a cenote",
+  "productCount": 13,
+  "transactionId": "TC00000002"
 }

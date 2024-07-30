@@ -4,8 +4,6 @@ import BrokerRepository from "../domain/broker.repository";
 import { Order, STATUS } from '../domain/order';
 import OrderRepository from "../domain/order.repository";
 
-type OrderRequest = Omit<Order, "status">;
-
 export class OrderApplication {
   readonly repositoryOrder: OrderRepository;
   readonly repositoryBroker: BrokerRepository;
@@ -18,9 +16,8 @@ export class OrderApplication {
     this.repositoryBroker = repositoryBroker;
   }
 
-  async create(order: OrderRequest): Promise<Order> {
-    const myOrder: Order = { ...order, status: STATUS.PENDING };
-    const result = await this.repositoryOrder.insert(myOrder);
+  async create(order: Order): Promise<Order> {
+    const result = await this.repositoryOrder.insert(order);
     await this.repositoryBroker.send({
       type: EnvironmentVariables.QUEUE_ORDER_CREATED_EVENT,
       data: result,

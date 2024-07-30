@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { OrderApplication } from "../../../application/order.application";
-import { Order } from "../../../domain/order";
+import { Order, STATUS } from "../../../domain/order";
 
 export class NewOrderController {
   readonly application: OrderApplication;
@@ -18,7 +18,7 @@ export class NewOrderController {
       productName,
       productCount,
       transactionId,
-      "PENDING"
+      STATUS.PENDING
     );
 
     const orderCreated = await this.application.create(order);
