@@ -1,7 +1,6 @@
 import { BrokerBootstrap } from "../../../../bootstrap/broker.bootstrap";
 import { EnvironmentVariables } from "../../../../config/app.config";
-import BrokerRepository from "../../domain/broker.repository";
-import { STATUS } from "../../domain/order";
+import { BrokerRepository, STATUS } from "../../domain";
 import { OrderInfrastructure } from "../mongo-database/order.infraestructure";
 import { ReceiveMessageService, UtilsBrokerService } from "./services";
 

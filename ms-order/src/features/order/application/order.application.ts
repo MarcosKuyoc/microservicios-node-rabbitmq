@@ -1,8 +1,7 @@
 
 import { EnvironmentVariables } from "../../../config/app.config";
-import BrokerRepository from "../domain/broker.repository";
-import { Order, STATUS } from '../domain/order';
-import OrderRepository from "../domain/order.repository";
+import { BrokerRepository, Order, OrderRepository, STATUS } from "../domain";
+
 
 export class OrderApplication {
   readonly repositoryOrder: OrderRepository;

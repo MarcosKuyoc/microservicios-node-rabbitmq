@@ -1,6 +1,6 @@
-import BrokerRepository from "../domain/broker.repository";
+import { BrokerRepository } from "../domain/broker.repository";
 
-export default class BrokerApplication {
+export class BrokerApplication {
   readonly repositoryBroker: BrokerRepository;
 
   constructor(

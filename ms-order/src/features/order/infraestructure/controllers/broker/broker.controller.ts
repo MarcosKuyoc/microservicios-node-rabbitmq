@@ -1,4 +1,4 @@
-import BrokerApplication from "../../../application/broker.application";
+import { BrokerApplication } from "../../../application/broker.application";
 
 export class BrokerController {
   readonly brokerApllication: BrokerApplication; 

@@ -1,6 +1,4 @@
-
-import { Order, STATUS } from "../../domain/order";
-import OrderRepository from "../../domain/order.repository";
+import { Order, OrderRepository, STATUS } from "../../domain";
 import OrderModel from './models/order.model';
 
 export class OrderInfrastructure implements OrderRepository {

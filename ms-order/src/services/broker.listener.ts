@@ -1,5 +1,5 @@
-import BrokerApplication from "../features/order/application/broker.application";
-import { BrokerController } from "../features/order/infraestructure/adapters/broker/broker.controller";
+import { BrokerApplication } from "../features/order/application/broker.application";
+import { BrokerController } from "../features/order/infraestructure/controllers/broker/broker.controller";
 import { OrderInfrastructure } from '../features/order/infraestructure/mongo-database/order.infraestructure';
 import { BrokerInfrastructure } from "../features/order/infraestructure/rabbitmq-queue/broker.infraestructure";
 
