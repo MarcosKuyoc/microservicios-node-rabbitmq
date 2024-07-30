@@ -32,14 +32,6 @@ export class EnvironmentVariables {
 
     static get RABBITMQ_HOST(): string {
         return process.env.RABBITMQ_HOST || env.RABBITMQ.HOST || "localhost:5672";
-      }
-    
-    static get QUEUE_ORDER_CREATED_EVENT(): string {
-        return (
-            process.env.QUEUE_ORDER_CREATED_EVENT ||
-            env.RABBITMQ.QUEUES.ORDER_CREATED_EVENT ||
-            "ORDER_CREATED_EVENT"
-        );
     }
     
     static get QUEUE_ORDER_PAID_EVENT(): string {
@@ -47,6 +39,14 @@ export class EnvironmentVariables {
             process.env.QUEUE_ORDER_PAID_EVENT || env.RABBITMQ.QUEUES.ORDER_PAID_EVENT || "ORDER_PAID_EVENT"
         );
     }
+
+    static get QUEUE_ORDER_STORED_EVENT(): string {
+        return (
+          process.env.QUEUE_ORDER_STORED_EVENT ||
+          env.RABBITMQ.QUEUES.ORDER_STORED_EVENT ||
+          "ORDER_STORED_EVENT"
+        );
+      }
     
     static get EXCHANGE_ERROR_EVENT(): string {
         return (

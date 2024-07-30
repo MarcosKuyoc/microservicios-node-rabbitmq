@@ -1,11 +1,11 @@
 import mongoose, { Schema, Model } from "mongoose";
-import { Payment } from "../../../domain/payment";
+import { Delivery } from "../../../domain/delivery";
 
-class PaymentModel {
-  private readonly paymentSchema: Schema<Payment>;
+class DeliveryModel {
+  private readonly deliverySchema: Schema<Delivery>;
 
   constructor() {
-    this.paymentSchema = new Schema<Payment>({
+    this.deliverySchema = new Schema<Delivery>({
       userId: {
         type: String,
         required: true,
@@ -33,13 +33,21 @@ class PaymentModel {
       gateway: {
         type: String,
         required: true,
-      }
+      },
+      storeName: {
+        type: String,
+        required: true,
+      },
+      deliveryStatus: {
+        type: String,
+        required: true,
+      },
     });
   }
 
-  get model(): Model<Payment> {
-    return mongoose.model("Payment", this.paymentSchema);
+  get model(): Model<Delivery> {
+    return mongoose.model("delivery", this.deliverySchema);
   }
 }
 
-export default new PaymentModel().model;
+export default new DeliveryModel().model;

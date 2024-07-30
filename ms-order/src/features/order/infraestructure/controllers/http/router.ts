@@ -4,7 +4,7 @@ import { ValidatorMiddleware } from '../../../../../../../ms-auth/src/middleware
 import { orderSchema } from './order.schema';
 import { NewOrderController } from './newOrder.controller';
 import { OrderInfrastructure } from '../../mongo-database/order.infraestructure';
-import { BrokerInfrastructure } from '../../rabbitmq-queue/broker.infraestructure';
+import { BrokerInfrastructure } from '../../rabbitmq/broker.infraestructure';
 import { OrderApplication } from '../../../application/order.application';
 
 

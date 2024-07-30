@@ -1,7 +1,7 @@
 import { BrokerApplication } from "../features/payment/application/broker.application";
 import { BrokerController } from "../features/payment/infraestructure/controller/broker.controller";
 import { PaymentInfrastructure } from "../features/payment/infraestructure/mongo-database/payment.infraestructure";
-import { BrokerInfrastructure } from "../features/payment/infraestructure/rabbitmq-broker/broker.infraestructure";
+import { BrokerInfrastructure } from "../features/payment/infraestructure/rabbitmq/broker.infraestructure";
 
 const paymentInfrastructure = new PaymentInfrastructure();
 const brokerInfraestructure = new BrokerInfrastructure(paymentInfrastructure);
