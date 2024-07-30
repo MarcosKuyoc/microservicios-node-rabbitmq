@@ -3,7 +3,7 @@ const env = yenv();
 
 export class EnvironmentVariables {
     static get PORT(): number {
-        return process.env.PORT || env.PORT || 3000;
+        return process.env.PORT || env.PORT || 3200;
     }
 
     static get MONGO_HOST(): string {
@@ -30,11 +30,28 @@ export class EnvironmentVariables {
         return process.env.MONGO_PASSWORD || env.DATABASE.MONGO.PASSWORD || "12345";
     }
 
-    static get TOKEN_TIMEOUT(): number {
-        return process.env.TOKEN_TIMEOUT || env.TOKEN.TIMEOUT || 15;
+    static get RABBITMQ_HOST(): string {
+        return process.env.RABBITMQ_HOST || env.RABBITMQ.HOST || "localhost:5672";
+      }
+    
+    static get QUEUE_ORDER_CREATED_EVENT(): string {
+        return (
+            process.env.QUEUE_ORDER_CREATED_EVENT ||
+            env.RABBITMQ.QUEUES.ORDER_CREATED_EVENT ||
+            "ORDER_CREATED_EVENT"
+        );
     }
-
-    static get TOKEN_SECRET_WORD(): string {
-        return process.env.TOKEN_SECRET_WORD || env.TOKEN.SECRET_WORD || "APP_M3XIC0_12345";
+    
+    static get QUEUE_ORDER_PAID_EVENT(): string {
+        return (
+            process.env.QUEUE_ORDER_PAID_EVENT || env.RABBITMQ.QUEUES.ORDER_PAID_EVENT
+        );
+    }
+    
+    static get EXCHANGE_ERROR_EVENT(): string {
+        return (
+            process.env.EXCHANGE_ERROR_EVENT ||
+            env.RABBITMQ.EXCHANGES.EXCHANGE_ERROR_EVENT
+        );
     }
 }

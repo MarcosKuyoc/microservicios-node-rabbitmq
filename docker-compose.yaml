@@ -26,6 +26,19 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=12345
     networks:
       - net-ms
+  
+  mongo-ms-payment:
+    image: mongo:3.6
+    container_name: mongo-ms-payment
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo-payment-volume:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=12345
+    networks:
+      - net-ms
 
   ms-auth:
     build:
@@ -69,6 +82,7 @@ services:
 volumes:
   mongo-auth-volume:
   mongo-order-volume:
+  mongo-payment-volume:
 
 networks:
   net-ms:

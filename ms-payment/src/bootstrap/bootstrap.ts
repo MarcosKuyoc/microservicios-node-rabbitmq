@@ -1,3 +1,3 @@
 export abstract class Bootstrap {
-    abstract initilize(): Promise<boolean | Error>
+    abstract initialize(): Promise<boolean | Error>
 }

@@ -3,7 +3,7 @@ import { Bootstrap } from "./bootstrap";
 import { EnvironmentVariables } from "../config/app.config";
 
 export class DatabaseBootstrap extends Bootstrap {
-    public initilize(): Promise<boolean | Error> {
+    public initialize(): Promise<boolean | Error> {
         return new Promise<boolean | Error>((resolve, reject) => {
             const username:string = EnvironmentVariables.MONGO_USERNAME;
             const password:string = EnvironmentVariables.MONGO_PASSWORD;

@@ -1,6 +1,5 @@
 import express, { Application, Request, Response } from 'express';
 import { ErrorMiddleware } from './middlewares/error.middleware';
-import router from './features/payment/infraestructure/adapters/router';
 
 class App {
     readonly expressApp: Application;
@@ -18,7 +17,6 @@ class App {
     }
 
     private mountRoutes() {
-        this.expressApp.use('/payment', router)
         this.expressApp.get("/", (req: Request, res: Response) => {
             res.status(200).json("App is running");
         });

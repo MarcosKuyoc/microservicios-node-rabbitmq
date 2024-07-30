@@ -8,7 +8,7 @@ export class ServerBootstrap extends Bootstrap {
         super();
     }
 
-    public initilize(): Promise<boolean | Error> {
+    public initialize(): Promise<boolean | Error> {
         return new Promise<boolean | Error>((resolve, reject) => {
             const server =  http.createServer(this.app);
             const PORT = EnvironmentVariables.PORT;
