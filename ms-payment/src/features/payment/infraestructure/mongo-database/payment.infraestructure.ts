@@ -1,5 +1,4 @@
-import { Payment, STATUS } from "../../domain/payment";
-import { PaymentRepository } from "../../domain/payment.repository";
+import { Payment, PaymentRepository, STATUS } from '../../domain';
 import PaymentModel from './models/payment.model';
 
 export class PaymentInfrastructure implements PaymentRepository {

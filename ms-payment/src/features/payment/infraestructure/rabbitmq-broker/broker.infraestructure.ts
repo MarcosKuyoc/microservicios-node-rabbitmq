@@ -1,11 +1,10 @@
 import { BrokerBootstrap } from "../../../../bootstrap/broker.bootstrap";
 import { EnvironmentVariables } from "../../../../config/app.config";
-import { BrokerRepository } from "../../domain/broker.repository";
-import { Payment, PAYMENT_GATEWAY, STATUS } from "../../domain/payment";
+import { BrokerRepository, Payment, PAYMENT_GATEWAY, STATUS } from "../../domain";
 import { PaymentInfrastructure } from "../mongo-database/payment.infraestructure";
 import { ReceiveMessageService, UtilsBrokerService } from "./services";
 
-export default class BrokerInfrastructure implements BrokerRepository {
+export class BrokerInfrastructure implements BrokerRepository {
   constructor(private readonly paymentInfrastructure: PaymentInfrastructure) {}
 
   async send(message: any): Promise<any> {

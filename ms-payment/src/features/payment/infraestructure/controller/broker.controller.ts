@@ -1,7 +1,6 @@
 import { BrokerApplication } from "../../application/broker.application";
 
-
-export default class BrokerController {
+export class BrokerController {
   constructor(private brokerApplication: BrokerApplication) {}
 
   async listen() {
