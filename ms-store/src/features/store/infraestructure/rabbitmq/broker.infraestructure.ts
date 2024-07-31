@@ -43,7 +43,8 @@ export class BrokerInfrastructure implements BrokerRepository {
   }
 
   async consumerAccept(message: any) {
-    const content = JSON.parse(message.content.toString()).data;
+    const content = JSON.parse(message.content.toString());
+    console.debug("Store accept: ", content);
 
     // TODO: Recibir el mensaje y seleccionar la tienda
     const store = new Store(
@@ -60,12 +61,15 @@ export class BrokerInfrastructure implements BrokerRepository {
     await this.storeInfrastructure.insert(store);
     UtilsBrokerService.confirmMessage(BrokerBootstrap.Channel, message);
     this.send(store);
+    console.debug("Order enviada");
   }
 
   async consumerReject(message: any) {
     const content = JSON.parse(message.content.toString());
 
+    
     await this.storeInfrastructure.update(content.transactionId, STATUS.CANCELLED);
     UtilsBrokerService.confirmMessage(BrokerBootstrap.Channel, message);
+    console.debug("Store cancelled: ", content);
   }
 }

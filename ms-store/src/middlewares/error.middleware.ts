@@ -37,6 +37,7 @@ export class ErrorMiddleware {
             objError.stack = error.stack;
         }
 
+        console.error(objError);
         res.status(objError.status as number).json(objError);
     }
 }
