@@ -22,7 +22,7 @@ export class ServerBootstrap extends Bootstrap {
             })
             .on("error", (err : Error) => {
                 reject(err);
-                console.error(err);
+                console.error("Server error connected");
             })
         })
     }

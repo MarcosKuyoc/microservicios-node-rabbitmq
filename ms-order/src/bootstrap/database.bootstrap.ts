@@ -26,7 +26,7 @@ export class DatabaseBootstrap extends Bootstrap {
                 },
                 err => {
                     reject(err);
-                    console.error(err);
+                    console.error("Database mongo error connected");
                 }
             );
         });

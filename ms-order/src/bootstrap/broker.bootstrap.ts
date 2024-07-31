@@ -16,6 +16,7 @@ export class BrokerBootstrap extends Bootstrap {
         console.log("Connected to RabbitMQ");
       } catch (error) {
         reject(error);
+        console.error("RabbitMQ error connected");
       }
     });
   }

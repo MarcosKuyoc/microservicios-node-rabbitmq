@@ -36,17 +36,17 @@ export class BrokerInfrastructure implements BrokerRepository {
   async consumerOrderConfirmed(message: any) {
     const content = JSON.parse(message.content.toString());
 
-    console.log("Order confirmed: ", content);
-
+    
     await this.orderInfrastructure.update(content.transactionId, STATUS.COMPLETED);
-
     UtilsBrokerService.confirmMessage(BrokerBootstrap.Channel, message);
+    console.debug("Order completada: ", content);
   }
 
   async consumerReject(message: any) {
     const content = JSON.parse(message.content.toString());
-
+    
     await this.orderInfrastructure.update(content.transactionId, STATUS.CANCELLED);
     UtilsBrokerService.confirmMessage(BrokerBootstrap.Channel, message);
+    console.debug("Order cancelled: ", content);
   }
 }
