@@ -1,0 +1,10 @@
+POST http://localhost:3500/api/order
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjY2YWE2NGYwNGFkNTQ5ODg4ZDQ5ZDZkYyIsIm5hbWUiOiJNYXJjb3MgS3V5b2MiLCJlbWFpbCI6Impta2UubWF0MUBnbWFpbC5jb20iLCJpYXQiOjE3MjI0NTQ5MzMsImV4cCI6MTcyMjQ1NTUzM30.EdxbWPHvYZOByPZdHZLpnJA9rQb3MBQG8sNjATXRnCU
+
+{
+  "productId": "6",
+  "productName": "Tour #6 a cenote",
+  "productCount": 11,
+  "transactionId": "TC00000006"
+}

@@ -1,0 +1,6 @@
+POST http://localhost:3500/api/validate-access-token
+Content-Type: application/json
+
+{
+  "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjY2YWE2NGYwNGFkNTQ5ODg4ZDQ5ZDZkYyIsIm5hbWUiOiJNYXJjb3MgS3V5b2MiLCJlbWFpbCI6Impta2UubWF0MUBnbWFpbC5jb20iLCJpYXQiOjE3MjI0NDMyNjksImV4cCI6MTcyMjQ0Mzg2OX0.uCk5r138rjVB9mgvYUFpz-Wa26NvwScVHLAdB0qulUE"
+}
