@@ -5,6 +5,7 @@ export class ErrorMiddleware {
     static notFound(req: Request, res: Response, next: NextFunction) {
         const error: Partial<IError> = new Error("Not Found");
         error.status = 404;
+        console.error(error);
         next(error);
     }
 
@@ -15,7 +16,6 @@ export class ErrorMiddleware {
             err.message = error.message;
             err.stack = error.stack;
             err.status = 409;
-    
             next(err);
           });
         };
@@ -36,7 +36,7 @@ export class ErrorMiddleware {
         if (process.env.NODE_ENV !== "production") {
             objError.stack = error.stack;
         }
-
+        console.error(objError);
         res.status(objError.status as number).json(objError);
     }
 }

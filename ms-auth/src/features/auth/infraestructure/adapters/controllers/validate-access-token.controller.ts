@@ -7,9 +7,9 @@ export class ValidateAccessTokenController {
       const { accessToken } = req.body;
       await AuthService.validateAccessToken(accessToken);
   
-      return res.json({valid: true});
+      return res.status(200).json({valid: true});
     } catch (error: any) {
-      return res.status(error.status).send(error.message);
+      throw error;
     }
   }
 }

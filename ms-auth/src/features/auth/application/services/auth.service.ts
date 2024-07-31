@@ -41,9 +41,9 @@ export class AuthService {
       return payload;
     } catch (error: any) {
       if (error.message === 'Token expired') {
-        throw {status: 409, message: 'the access token has expired'};
+        throw new Error('the access token has expired');
       } else {
-        throw {status: 409, message: 'the access token is invalid'};
+        throw new Error('the access token is invalid');
       }
     }
   }
