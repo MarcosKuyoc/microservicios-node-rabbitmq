@@ -1,7 +1,7 @@
 {
-  "name": "ms-auth",
+  "name": "gateway",
   "version": "1.0.0",
-  "description": "Microservicio encargado del proceso te autenticacion a la plataforma",
+  "description": "Microservicio encargado  de validar las peticiones validas a la aplicacion o rechazarlas",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf cache dist",
