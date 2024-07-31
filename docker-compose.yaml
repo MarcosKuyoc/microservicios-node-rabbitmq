@@ -207,6 +207,25 @@ services:
     networks:
       - net-ms
 
+  gateway:
+    build:
+      dockerfile: gateway/Dockerfile
+      context: .
+    image: image-gateway
+    container_name: gateway
+    ports:
+      - 8085:3000
+    environment:
+      - PORT=3000
+      - PATH_AUTH=http://ms-auth:3000
+      - PATH_ORDER=http://ms-order:3000
+    depends_on:
+      - ms-auth
+      - ms-order
+      - rabbitmq
+    restart: always
+    networks:
+      - net-ms
 volumes:
   mongo-auth-volume:
   mongo-order-volume:
