@@ -37,7 +37,7 @@ export class BrokerInfrastructure implements BrokerRepository {
   }
 
   async consumerAccept(message: any) {
-    const content = JSON.parse(message.content.toString()).data;
+    const content = JSON.parse(message.content.toString());
 
     // TODO: Recibir el mensaje y seleccionar la tienda
     const delivery = new Delivery(

@@ -36,7 +36,7 @@ export class ErrorMiddleware {
         if (process.env.NODE_ENV !== "production") {
             objError.stack = error.stack;
         }
-
+        console.error(objError);
         res.status(objError.status as number).json(objError);
     }
 }
