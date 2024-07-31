@@ -44,6 +44,7 @@ export class BrokerInfrastructure implements BrokerRepository {
 
   async consumerAccept(message: any) {
     const content = JSON.parse(message.content.toString()).data;
+    console.debug("Payment accept: ", content);
 
     // TODO: Recibir el mensaje y crear el nuevo pago con stripe o alguna pasarela de pago - adjuntar a la DB de pagos
     const payment = new Payment(
@@ -59,6 +60,7 @@ export class BrokerInfrastructure implements BrokerRepository {
     await this.paymentInfrastructure.insert(payment);
     UtilsBrokerService.confirmMessage(BrokerBootstrap.Channel, message);
     this.send(payment);
+    console.debug("Payment enviado");
   }
 
   async consumerReject(message: any) {
@@ -66,5 +68,6 @@ export class BrokerInfrastructure implements BrokerRepository {
 
     await this.paymentInfrastructure.update(content.transactionId, STATUS.CANCELLED);
     UtilsBrokerService.confirmMessage(BrokerBootstrap.Channel, message);
+    console.debug("Payment cancelled: ", content);
   }
 }
