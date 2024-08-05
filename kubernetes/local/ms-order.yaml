@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-deploy
+spec: 
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ms-order
+  template:
+    metadata:
+      labels:
+        app: ms-order
+    spec:
+          containers: 
+            - name: order-container
+              image: localhost:5001/image-ms-order
+              imagePullPolicy: Always
+              ports:
+                - containerPort: 8020
+              env:
+                - name: PORT
+                  value: "8020"
+                - name: MONGO_HOST
+                  value: mongo-svc
+                - name: MONGO_PORT
+                  value: "27017"
+                - name: MONGO_USERNAME
+                  value: root
+                - name: MONGO_PASSWORD
+                  value: "12345"
+                - name: MONGO_DATABASE_NAME
+                  value: "order"
+                - name: MONGO_DATABASE_SOURCE
+                  value: "admin"
+                - name: RABBITMQ_HOST
+                  value: rabbitmq-svc:5672
+                - name: QUEUE_ORDER_CREATED_EVENT
+                  value: ORDER_CREATED_EVENT
+                - name: EXCHANGE_ORDER_COMPLETED_EVENT
+                  value: EXCHANGE_ORDER_COMPLETED_EVENT
+                - name: EXCHANGE_ERROR_EVENT
+                  value: EXCHANGE_ERROR_EVENT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-svc
+spec:
+  selector:
+    app: ms-order
+  ports:
+    - port: 80
+      targetPort: 8020
+      protocol: TCP
+  type: ClusterIP
+

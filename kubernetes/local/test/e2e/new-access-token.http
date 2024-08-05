@@ -1,0 +1,6 @@
+POST http://localhost/auth/new-access-token
+Content-Type: application/json
+
+{
+  "refreshToken": "fa6f31eb-3fea-4e0a-bc0a-75e6fccf2fd2"
+}

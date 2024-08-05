@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-deploy
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers: 
+        - name: rabbitmq-container
+          image: rabbitmq:3.8.9-management
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5672
+            - containerPort: 15672
+          resources: {}
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-svc
+spec:
+  selector:
+    app: rabbitmq
+  ports:
+    - port: 5672
+      targetPort: 5672
+      protocol: TCP
+      nodePort: 30100
+      name: db
+    - port: 15672
+      targetPort: 15672
+      protocol: TCP
+      nodePort: 30200
+      name: ui
+  type: NodePort
+
