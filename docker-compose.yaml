@@ -72,8 +72,8 @@ services:
       context: .
     image: image-ms-auth
     container_name: ms-auth
-    ports:
-      - 8080:3000
+    # ports:
+    #   - 8080:3000
     environment:
       - PORT=3000
       - MONGO_HOST=mongo-ms-auth
@@ -96,8 +96,8 @@ services:
       context: .
     image: image-ms-order
     container_name: ms-order
-    ports:
-      - 8081:3000
+    # ports:
+    #   - 8081:3000
     environment:
       - PORT=3000
       - MONGO_HOST=mongo-ms-order
@@ -123,8 +123,8 @@ services:
       context: .
     image: image-ms-payment
     container_name: ms-payment
-    ports:
-      - 8082:3000
+    # ports:
+    #   - 8082:3000
     environment:
       - PORT=3000
       - MONGO_HOST=mongo-ms-payment
@@ -148,8 +148,8 @@ services:
       context: .
     image: image-ms-store
     container_name: ms-store
-    ports:
-      - 8083:3000
+    # ports:
+    #   - 8083:3000
     environment:
       - PORT=3000
       - MONGO_HOST=mongo-ms-store
@@ -173,8 +173,8 @@ services:
       context: .
     image: image-ms-delivery
     container_name: ms-delivery
-    ports:
-      - 8084:3000
+    # ports:
+    #   - 8084:3000
     environment:
       - PORT=3000
       - MONGO_HOST=mongo-ms-store
