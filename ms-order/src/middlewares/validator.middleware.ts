@@ -38,7 +38,6 @@ export class ValidatorMiddleware {
             error.status = 411;
             error.message = "Parameters error."
             error.stack = item.error.toString();
-            console.error(error);
             next(error);
           }
         }

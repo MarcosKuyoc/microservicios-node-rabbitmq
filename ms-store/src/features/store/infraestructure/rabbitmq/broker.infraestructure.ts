@@ -2,7 +2,7 @@ import { BrokerBootstrap } from "../../../../bootstrap/broker.bootstrap";
 import { EnvironmentVariables } from "../../../../config/app.config";
 import { BrokerRepository, Store, PAYMENT_GATEWAY, STATUS } from "../../domain";
 import { StoreInfrastructure } from "../mongo-database/store.infraestructure";
-import { ReceiveMessageService, UtilsBrokerService } from "./services";
+import { ReceiveMessageService, SendMessagesService, UtilsBrokerService } from "./services";
 
 export class BrokerInfrastructure implements BrokerRepository {
   constructor(private readonly storeInfrastructure: StoreInfrastructure) {}
@@ -10,8 +10,8 @@ export class BrokerInfrastructure implements BrokerRepository {
   async send(message: any): Promise<any> {
     const channel = BrokerBootstrap.Channel;
     const queueName = EnvironmentVariables.QUEUE_ORDER_STORED_EVENT;
-    await channel.assertQueue(queueName, { durable: true });
-    channel.sendToQueue(queueName, Buffer.from(JSON.stringify(message)));
+    await SendMessagesService.send(channel, queueName, message);
+    console.debug("Order enviada");
   }
 
   async sendError(message: any): Promise<any> {
@@ -35,17 +35,16 @@ export class BrokerInfrastructure implements BrokerRepository {
       this.consumerAccept.bind(this)
     );
 
-    await ReceiveMessageService.rejected(
-      channel,
-      this.consumerReject.bind(this),
-      "delivery.error"
-    );
+    // await ReceiveMessageService.rejected(
+    //   channel,
+    //   this.consumerReject.bind(this),
+    //   "delivery.error"
+    // );
   }
 
   async consumerAccept(message: any) {
     const content = JSON.parse(message.content.toString());
-    console.debug("Store accept: ", content);
-
+    
     // TODO: Recibir el mensaje y seleccionar la tienda
     const store = new Store(
       content.userId,
@@ -57,17 +56,16 @@ export class BrokerInfrastructure implements BrokerRepository {
       PAYMENT_GATEWAY.STRIPE,
       'Tienda #1'
     );
-
+    
     await this.storeInfrastructure.insert(store);
     UtilsBrokerService.confirmMessage(BrokerBootstrap.Channel, message);
+    console.debug("Store aceptada y confirmada: ", content);
     this.send(store);
-    console.debug("Order enviada");
   }
 
   async consumerReject(message: any) {
     const content = JSON.parse(message.content.toString());
 
-    
     await this.storeInfrastructure.update(content.transactionId, STATUS.CANCELLED);
     UtilsBrokerService.confirmMessage(BrokerBootstrap.Channel, message);
     console.debug("Store cancelled: ", content);

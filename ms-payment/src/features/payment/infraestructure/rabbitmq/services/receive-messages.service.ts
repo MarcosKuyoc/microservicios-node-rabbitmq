@@ -18,19 +18,12 @@ export class ReceiveMessageService {
     cb: (message: any) => void,
     routingKeys: string[]
   ) {
-    await channel.assertExchange(
-      EnvironmentVariables.EXCHANGE_ERROR_EVENT,
-      "topic",
-      { durable: true }
-    );
+    const exchangeName = EnvironmentVariables.EXCHANGE_ERROR_EVENT;
+    await channel.assertExchange(exchangeName, "topic",{ durable: true });
 
     const assertQueue = await channel.assertQueue("", { exclusive: true });
     routingKeys.forEach((routingKey) => {
-      channel.bindQueue(
-        assertQueue.queue,
-        EnvironmentVariables.EXCHANGE_ERROR_EVENT,
-        routingKey
-      );
+      channel.bindQueue(assertQueue.queue, exchangeName, routingKey);
     });
 
     channel.consume(assertQueue.queue, (message: any) => cb(message), {
