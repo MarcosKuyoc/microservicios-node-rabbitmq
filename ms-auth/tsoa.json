@@ -5,8 +5,5 @@
   "spec": {
     "outputDirectory": "./src/swagger",
     "specVersion": 3
-  },
-  "routes": {
-    "routesDir": "build"
   }
 }

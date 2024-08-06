@@ -2,6 +2,8 @@ import express, { Application, Request, Response } from 'express';
 import { ErrorMiddleware } from './middlewares/error.middleware';
 import router from './features/auth/infraestructure/adapters/router';
 import swaggerUi from 'swagger-ui-express';
+import { setupSwagger } from './swagger';
+import { EnvironmentVariables } from './config/app.config';
 
 class App {
     readonly expressApp: Application;
@@ -19,11 +21,18 @@ class App {
     }
 
     private mountRoutes() {
-        if (process.env.NODE_ENV === 'development') {
-            const swaggerDocument = require('./swagger/swagger.json');
-            this.expressApp.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+        this.expressApp.use(EnvironmentVariables.BASE_API_URL, router);
+
+        if (process.env.NODE_ENV !== 'production') {
+            setupSwagger(this.expressApp);
+            this.expressApp.use('/api-docs', swaggerUi.serve, swaggerUi.setup(undefined, {
+                swaggerOptions: {
+                    url: '/api-docs.json'
+                }
+            }));
+            console.log(`Documentacion de API http://localhost:${EnvironmentVariables.PORT}/api-docs`);
         }
-        this.expressApp.use('/auth', router)
+        
         this.expressApp.get("/", (req: Request, res: Response) => {
             res.status(200).json("App is running");
         });

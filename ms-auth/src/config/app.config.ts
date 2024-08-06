@@ -6,6 +6,10 @@ export class EnvironmentVariables {
         return process.env.PORT || env.PORT || 3000;
     }
 
+    static get BASE_API_URL(): string {
+        return '/auth';
+    }
+
     static get MONGO_HOST(): string {
         return process.env.MONGO_HOST || env.DATABASE.MONGO.HOST || "127.0.0.1";
     }

@@ -6,7 +6,7 @@ import { ErrorAuthPayload } from '../../../application/services/auth-payload.int
 
 type RequestAuth = Pick<Auth, 'name' | 'email' | "password">;
 
-@Route('register')
+@Route('/register')
 @Tags('Register')
 export class RegisterController {
   readonly application: RegisterApplication;
